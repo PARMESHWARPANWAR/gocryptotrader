@@ -204,7 +204,7 @@ func (e *Exchange) wsHandleTicker(ctx context.Context, respRaw []byte) error {
 	}
 	return e.Websocket.DataHandler.Send(ctx, &ticker.Price{
 		ExchangeName: e.Name,
-		Pair:         resp.Pair, // ← direct use
+		Pair:         resp.Pair,
 		AssetType:    asset.Spot,
 		High:         resp.Tick.High.Float64(),
 		Low:          resp.Tick.Low.Float64(),

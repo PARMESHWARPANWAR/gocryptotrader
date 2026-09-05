@@ -433,13 +433,12 @@ subscriptionLoop:
 			continue
 		}
 
-		e.ws.mu.RLock()
-		subscribeKey := e.ws.subscribeKey
-		e.ws.mu.RUnlock()
-
 		var req map[string]any
 		switch s.Channel {
 		case subscription.MyOrdersChannel:
+			e.ws.mu.RLock()
+			subscribeKey := e.ws.subscribeKey
+			e.ws.mu.RUnlock()
 			req = map[string]any{
 				lbankWsAction:  action,
 				"subscribe":    lbankWsOrderUpdate,
@@ -447,6 +446,9 @@ subscriptionLoop:
 				"pair":         "all",
 			}
 		case subscription.MyAccountChannel:
+			e.ws.mu.RLock()
+			subscribeKey := e.ws.subscribeKey
+			e.ws.mu.RUnlock()
 			req = map[string]any{
 				lbankWsAction:  action,
 				"subscribe":    lbankWsAssetUpdate,

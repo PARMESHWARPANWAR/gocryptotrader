@@ -470,7 +470,6 @@ subscriptionLoop:
 		}
 
 		for _, p := range s.Pairs {
-			var req map[string]any
 			switch s.Channel {
 			case subscription.OrderbookChannel:
 				req = map[string]any{

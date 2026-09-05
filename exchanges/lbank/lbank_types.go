@@ -151,7 +151,7 @@ type websocketTradeData struct {
 	Volume    types.Number `json:"volume"`
 	Price     types.Number `json:"price"`
 	Direction string       `json:"direction"`
-	TS        types.Time   `json:"TS"`
+	Timestamp time.Time    `json:"TS"`
 }
 
 // websocketDepthResponse holds an orderbook websocket message

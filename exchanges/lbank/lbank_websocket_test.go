@@ -219,7 +219,7 @@ func TestWsHandleTrades(t *testing.T) {
 	err := ex.wsHandleData(t.Context(), []byte(`{
 		"type": "trade",
 		"pair": "eth_usdt",
-		"trade": {"volume": "0.5","price": "2100.0","direction": "buy","TS": 1704067200000},
+		"trade": {"volume": "0.5","price": "2100.0","direction": "buy","TS": "2026-07-07T12:30:00.000Z"},
 		"SERVER": "V2",
 		"TS": 1704067200000
 	}`))
@@ -230,7 +230,7 @@ func TestWsHandleTrades(t *testing.T) {
 		err := ex.wsHandleData(t.Context(), []byte(`{
 			"type": "trade",
 			"pair": "btc_usdt",
-			"trade": {"volume": "0.5","price": "100","direction": "invalid","TS": 1704067200000}
+			"trade": {"volume": "0.5","price": "100","direction": "invalid","TS": "2026-07-07T12:30:00.000Z"}
 		}`))
 		assert.Error(t, err, "invalid direction should return error")
 	})

@@ -236,7 +236,7 @@ func (e *Exchange) wsHandleTrades(ctx context.Context, respRaw []byte) error {
 		CurrencyPair: resp.Pair,
 		Price:        resp.Trade.Price.Float64(),
 		Amount:       resp.Trade.Volume.Float64(),
-		Timestamp:    resp.Trade.TS.Time(),
+		Timestamp:    resp.Trade.Timestamp,
 		Side:         side,
 	}
 	if tradeFeed {

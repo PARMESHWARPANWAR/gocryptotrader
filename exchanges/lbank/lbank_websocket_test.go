@@ -83,6 +83,7 @@ func TestLbankOrderStatusToOrderStatus(t *testing.T) {
 		expected order.Status
 		wantErr  bool
 	}{
+		{-1, order.Cancelled, false},
 		{0, order.New, false},
 		{1, order.PartiallyFilled, false},
 		{2, order.Filled, false},
@@ -109,10 +110,16 @@ func TestKlineIntervalFromString(t *testing.T) {
 		expected kline.Interval
 		wantErr  bool
 	}{
-		{"1min", kline.OneMin, false},
-		{"5min", kline.FiveMin, false},
-		{"1hr", kline.OneHour, false},
-		{"day", kline.OneDay, false},
+		{lbankWsKline1Min, kline.OneMin, false},
+		{lbankWsKline5Min, kline.FiveMin, false},
+		{lbankWsKline15Min, kline.FifteenMin, false},
+		{lbankWsKline30Min, kline.ThirtyMin, false},
+		{lbankWsKline1Hr, kline.OneHour, false},
+		{lbankWsKline4Hr, kline.FourHour, false},
+		{lbankWsKlineDay, kline.OneDay, false},
+		{lbankWsKlineWeek, kline.OneWeek, false},
+		{lbankWsKlineMonth, kline.OneMonth, false},
+		{lbankWsKlineYear, kline.OneYear, false},
 		{"invalid", 0, true},
 	}
 	for _, tt := range tests {
